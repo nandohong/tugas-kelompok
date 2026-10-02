@@ -1,0 +1,67 @@
+<div class="page">
+  <header class="header">
+    <div class="header-content">
+      <div class="brand">
+        <div class="brand-icon">✓</div>
+        <div>
+          <h1>Todo List</h1>
+          <p>Manage your tasks easily</p>
+        </div>
+      </div>
+
+      <div class="total-tasks">
+        <span>Total Tasks</span>
+        <strong>{{ todos.length }}</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">TASK OVERVIEW</span>
+        <h2>Your Tasks</h2>
+      </div>
+
+      <span class="task-count">{{ todos.length }} tasks</span>
+    </div>
+
+    <div class="todo-grid">
+      @for (todo of todos; track todo.id) {
+        <div class="todo-card">
+          <div class="card-top">
+            <span class="task-number">#{{ todo.id }}</span>
+
+            <span
+              class="status"
+              [class.completed]="todo.completed"
+              [class.pending]="!todo.completed"
+            >
+              <span class="status-dot"></span>
+              {{ todo.completed ? 'Completed' : 'Pending' }}
+            </span>
+          </div>
+
+          <h3>{{ todo.title | uppercaseTitle }}</h3>
+
+          <div class="card-footer">
+            <div class="user-info">
+              <div class="user-icon">U</div>
+              <div>
+                <span>User</span>
+                <strong>{{ todo.userId }}</strong>
+              </div>
+            </div>
+
+            <div
+              class="check-icon"
+              [class.checked]="todo.completed"
+            >
+              {{ todo.completed ? '✓' : '○' }}
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </main>
+</div>
